@@ -142,7 +142,7 @@ export const App: React.FC = () => {
   const currentMonthLabel = format(simulatedDate, 'MMMM yyyy', { locale: tr });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#191919] text-[#e6e6e6] flex flex-col">
       <Navbar
         onAddNew={handleAddNew}
         onExport={handleExport}
@@ -150,8 +150,8 @@ export const App: React.FC = () => {
         onReset={handleResetToInitial}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-20 sm:pb-8">
-        {/* Date Simulator Banner */}
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-5 sm:py-6 pb-20 sm:pb-8">
+        {/* Date Simulator */}
         <DateSimulator
           simulatedDate={simulatedDate}
           onSetDate={handleSetSimulatedDate}
@@ -194,14 +194,14 @@ export const App: React.FC = () => {
         />
       </main>
 
-      {/* Mobile Floating Action Button (FAB) for Easy 1-Thumb Product Creation */}
+      {/* Mobile Floating Action Button (FAB) */}
       <button
         onClick={handleAddNew}
-        className="sm:hidden fixed bottom-5 right-4 z-40 p-3.5 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white shadow-2xl shadow-indigo-600/50 hover:scale-105 active:scale-95 transition-all flex items-center justify-center border border-white/20"
+        className="sm:hidden fixed bottom-5 right-4 z-40 p-3 rounded-full bg-[#2383e2] hover:bg-[#1b73c4] text-white shadow-lg flex items-center justify-center transition-colors"
         aria-label="Taksit Ekle"
         title="Yeni Taksit Ekle"
       >
-        <Plus className="w-6 h-6" />
+        <Plus className="w-5 h-5" />
       </button>
 
       {/* Product Add / Edit Modal */}
@@ -217,8 +217,8 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 py-6 text-center text-xs text-slate-500 pb-safe">
-        <p>KartTaksit Pro — Kredi Kartı Taksit ve Aylık Borç Takip Uygulaması</p>
+      <footer className="border-t border-[#262626] py-6 text-center text-xs text-[#666666] pb-safe">
+        <p>KartTaksit Pro — Kredi Kartı Taksit ve Borç Takip</p>
       </footer>
     </div>
   );

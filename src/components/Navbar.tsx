@@ -27,7 +27,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -43,32 +42,33 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="border-b border-slate-800 bg-slate-950/85 backdrop-blur-md sticky top-0 z-40 transition-all">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-        {/* Brand */}
+    <header className="border-b border-[#2e2e2e] bg-[#191919] sticky top-0 z-40">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+        {/* Brand / Notion Workspace Header */}
         <div className="flex items-center gap-2.5 min-w-0">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30 flex-shrink-0">
-            <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
+          <div className="w-8 h-8 rounded-md bg-[#252525] border border-[#333333] flex items-center justify-center text-[#d4d4d4] flex-shrink-0">
+            <CreditCard className="w-4 h-4" />
           </div>
-          <div className="min-w-0">
-            <h1 className="text-sm sm:text-base font-extrabold text-white tracking-tight leading-none truncate">
+          <div className="flex items-center gap-2 min-w-0">
+            <h1 className="text-sm font-semibold text-[#f0f0f0] tracking-tight truncate">
               KartTaksit Pro
             </h1>
-            <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium hidden xs:inline sm:inline truncate">
+            <span className="text-[#555555] hidden sm:inline text-xs">/</span>
+            <span className="text-xs text-[#8a8a8a] hidden sm:inline truncate">
               Kredi Kartı & Taksit Takip
             </span>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Desktop Export */}
           <button
             onClick={onExport}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs font-medium items-center gap-1.5 hidden md:flex active:scale-95"
+            className="px-2.5 py-1.5 rounded-md bg-[#202020] hover:bg-[#282828] border border-[#2e2e2e] text-[#9b9b9b] hover:text-[#e6e6e6] transition-colors text-xs font-medium items-center gap-1.5 hidden md:flex"
             title="Verileri Yedekle (JSON İndir)"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3.5 h-3.5" />
             <span>Yedekle</span>
           </button>
 
@@ -82,10 +82,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs font-medium items-center gap-1.5 hidden md:flex active:scale-95"
+            className="px-2.5 py-1.5 rounded-md bg-[#202020] hover:bg-[#282828] border border-[#2e2e2e] text-[#9b9b9b] hover:text-[#e6e6e6] transition-colors text-xs font-medium items-center gap-1.5 hidden md:flex"
             title="Yedekten Geri Yükle"
           >
-            <Upload className="w-4 h-4" />
+            <Upload className="w-3.5 h-3.5" />
             <span>İçe Aktar</span>
           </button>
 
@@ -96,34 +96,34 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onReset();
               }
             }}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-slate-700 transition-all text-xs hidden md:flex active:scale-95"
+            className="p-1.5 rounded-md bg-[#202020] hover:bg-[#282828] border border-[#2e2e2e] text-[#8a8a8a] hover:text-[#e09153] transition-colors hidden md:flex"
             title="Örnek Verilere Sıfırla"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5" />
           </button>
 
-          {/* Mobile More Options Dropdown Trigger */}
+          {/* Mobile More Options */}
           <div className="relative md:hidden" ref={menuRef}>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all active:scale-95"
+              className="p-1.5 rounded-md bg-[#202020] border border-[#2e2e2e] text-[#8a8a8a] hover:text-[#e6e6e6] transition-colors"
               title="Daha Fazla Seçenek"
               aria-label="Menü"
             >
-              {isMobileMenuOpen ? <X className="w-4 h-4 text-indigo-400" /> : <MoreVertical className="w-4 h-4" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <MoreVertical className="w-4 h-4" />}
             </button>
 
-            {/* Mobile Dropdown Popup */}
+            {/* Mobile Dropdown */}
             {isMobileMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-52 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl p-2 z-50 flex flex-col gap-1 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute right-0 top-full mt-1.5 w-48 bg-[#202020] border border-[#2e2e2e] rounded-lg shadow-xl p-1.5 z-50 flex flex-col gap-0.5">
                 <button
                   onClick={() => {
                     onExport();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-slate-800 transition-colors w-full text-left"
+                  className="flex items-center gap-2 px-2.5 py-2 rounded text-xs font-medium text-[#cccccc] hover:bg-[#282828] transition-colors w-full text-left"
                 >
-                  <Download className="w-4 h-4 text-indigo-400" />
+                  <Download className="w-3.5 h-3.5 text-[#8a8a8a]" />
                   <span>Verileri Yedekle (JSON)</span>
                 </button>
 
@@ -136,13 +136,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
                 <button
                   onClick={() => mobileFileInputRef.current?.click()}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-slate-800 transition-colors w-full text-left"
+                  className="flex items-center gap-2 px-2.5 py-2 rounded text-xs font-medium text-[#cccccc] hover:bg-[#282828] transition-colors w-full text-left"
                 >
-                  <Upload className="w-4 h-4 text-emerald-400" />
+                  <Upload className="w-3.5 h-3.5 text-[#8a8a8a]" />
                   <span>Yedekten Geri Yükle</span>
                 </button>
 
-                <div className="h-px bg-slate-800 my-1"></div>
+                <div className="h-px bg-[#2e2e2e] my-1"></div>
 
                 <button
                   onClick={() => {
@@ -151,23 +151,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onReset();
                     }
                   }}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-amber-300 hover:bg-amber-500/10 transition-colors w-full text-left"
+                  className="flex items-center gap-2 px-2.5 py-2 rounded text-xs font-medium text-[#e09153] hover:bg-[#2c2018] transition-colors w-full text-left"
                 >
-                  <RotateCcw className="w-4 h-4 text-amber-400" />
+                  <RotateCcw className="w-3.5 h-3.5" />
                   <span>Örnek Verilere Sıfırla</span>
                 </button>
               </div>
             )}
           </div>
 
-          {/* Add Product Button */}
+          {/* Add Product Button (Notion Blue) */}
           <button
             onClick={onAddNew}
-            className="px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all flex items-center gap-1.5 active:scale-95"
+            className="px-3 py-1.5 rounded-md bg-[#2383e2] hover:bg-[#1b73c4] text-white text-xs font-medium transition-colors flex items-center gap-1.5"
           >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Taksit Ekle</span>
-            <span className="sm:hidden">Ekle</span>
+            <Plus className="w-3.5 h-3.5" />
+            <span>Taksit Ekle</span>
           </button>
         </div>
       </div>
